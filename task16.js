@@ -25,35 +25,23 @@ function addAqiData(){
 
 function renderAqiList(){
     var ta = document.getElementById('aqi-table');
-    for(var i = ta.childNodes.length-1 ; i >= 0 ; i--){
-        console.log(ta.childNodes[i]);
-        var c = ta.childNodes[i];
-       ta.childNodes[i].parentNode.removeChild(c);
+    var cdNodes = ta.childNodes;
+    var l = cdNodes.length;
+    console.log(cdNodes.length);
+    for(var i = 0 ; i< l ; i ++){
+        console.log('i='+i);
+        ta.removeChild(cdNodes[0]);
     }
-//    ta.innerHTML = '';
+
     for(var i in aqiData)
     {
         var newnode = document.createElement('tr');
         var city,value;
         city = i;
         value = aqiData[i];
-        newnode.innerHTML = '<td>'+city+'</td><td>'+value+'</td><td><button  class="del-btn">删除</button></td>';
+        newnode.innerHTML = '<td>'+city+'</td><td>'+value+'</td><td><button data-city="'+city+'" class="del-btn">删除</button></td>';
         document.getElementById('aqi-table').appendChild(newnode);
     }
-    var nodes = document.getElementsByClassName('del-btn');
-    for(var i = 0 ;i < nodes.length ;i ++){
-        nodes[i].onclick = delBtnHandle;
-    }
-    /*
-    var newnode = document.createElement('tr');
-    var city,value;
-    for(var i in aqiData)
-    {
-        city = i;
-        value = aqiData[i];
-    }
-    newnode.innerHTML = '<td>'+city+'</td><td>'+value+'</td><td><button  class="del-btn">删除</button></td>';
-    document.getElementById('aqi-table').appendChild(newnode);*/
 }
 
 function addBtnHandle(){
@@ -63,26 +51,19 @@ function addBtnHandle(){
     renderAqiList();
 }
 
-function delBtnHandle(){
-    console.log('hello delete');
-    var pp = this.parentNode.parentNode;
-    var city = pp.childNodes[0].innerHTML;
+function delBtnHandle(city){
     delete aqiData[city];
-//    pp.parentNode.removeChild(pp);
     renderAqiList();
 }
 
 function init(){
-//    console.log(document.getElementById('aqi-table').children);
     var btn = document.getElementById('add-btn');
     btn.onclick = function(){
         addBtnHandle();
     };
-//    setInterval(function(){
-//        var nodes = document.getElementsByClassName('del-btn');
-//        for(var i = 0 ;i < nodes.length ;i ++){
-//            nodes[i].onclick = delBtnHandle;
-//        }
-//    },1000);
+    document.getElementById('aqi-table').onclick = function(event){
+        if(event.target.nodeName.toLowerCase() === 'button')
+            delBtnHandle.call(null,event.target.dataset.city);
+    }
 }
 init();

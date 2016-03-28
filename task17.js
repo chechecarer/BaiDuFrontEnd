@@ -4,7 +4,7 @@
 
 function getDateStr(dat){
     var y = dat.getFullYear();
-    var m = dat.getMonth();
+    var m = dat.getMonth()+1;//getMonth返回0~11
     m = m < 10 ?'0'+m:m;
     var d = dat.getDate();
     d = d < 10? '0'+d:d;
@@ -13,10 +13,12 @@ function getDateStr(dat){
 
 function randomBuildData(seed){
     var returnData = {};
-    var dat = new Date('2016-02-01');
+    var dat = new Date('2016-01-01');
     var datStr = '';
     for(var i = 0 ; i < 92 ; i++){
+
         datStr = getDateStr(dat);
+
         returnData[datStr] = Math.ceil(Math.random() * seed);
         dat.setDate(dat.getDate()+1);
     }

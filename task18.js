@@ -14,6 +14,9 @@ function clickButtonIn(){
         var dataInput = document.createElement('div');
         dataInput.setAttribute('class','dataBlock');
         dataInput.innerHTML = input;
+        dataInput.onclick = function(){
+            this.parentNode.removeChild(this);
+        }
         var btn = this.getAttribute('id');
         if( btn == 'leftIn'){
             if(document.getElementById('dataShow').firstChild){
@@ -34,12 +37,14 @@ function clickButtonOut(){
     var dataShow = document.getElementById('dataShow')
     if(btn == 'leftOut'){
         var node = dataShow.firstChild;
-        dataShow.removeChild(node);
+        if(confirm('确定删除'+node.innerHTML))
+            dataShow.removeChild(node);
     }
     else{
         var cds = dataShow.childNodes;
         var node = cds[cds.length-1];
-        dataShow.removeChild(node);
+        if(confirm('确定删除'+node.innerHTML))
+         dataShow.removeChild(node);
 
     }
 }

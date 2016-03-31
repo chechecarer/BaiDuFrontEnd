@@ -2,7 +2,6 @@
  * Created by Administrator on 2016/03/28.
  */
 
-
 var chartData=new Array();//用于存放数据
 
 function renderBlock(){//更新数据显示

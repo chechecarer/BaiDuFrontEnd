@@ -1,0 +1,48 @@
+ @media screen and(min-width: 500px){
+
+   }
+
+      .body{
+          background-color: #eee;
+          overflow: auto;
+          border: 1px solid red;
+          padding: 20px;
+          min-width: 600px;
+          
+      }
+      .body div{
+          background-color: white;
+
+      }
+      .left{
+          float: left;
+          width: 200px;
+          border: 1px solid red;
+          text-align: center;
+          margin-left: -100%;
+          
+      }
+      .main{
+          float: left;
+          width: 100%;
+      }
+      .center{
+          
+          border: 1px solid red;
+          margin: 0 140px 0 220px;
+          /*padding: 10px;*/
+      }
+
+      .right{
+          float:left;
+          width: 120px;
+          text-align: center;
+          border: 1px solid red;
+          margin-left: -122px;
+      }
+      .team-logo,.team-name{
+          float: left;
+          border: 1px solid red;
+          margin: 10px;
+      } 
+
